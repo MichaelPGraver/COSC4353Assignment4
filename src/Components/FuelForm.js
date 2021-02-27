@@ -36,7 +36,7 @@ class FuelForm extends React.Component {
                         <h1 class="title has-text-centered">Fuel Quote Form</h1>
                         <div className="field">
                             <label className="label">Gallons Requested</label>
-                            <div className="control has-icons-left">
+                            <div className="control">
                             <input
                                 type="number"
                                 className="input"
@@ -77,7 +77,7 @@ class FuelForm extends React.Component {
                             </div>
                         </div>
                         <div className="field">
-                            <label className="label">Suggessted Price/Gallon</label>
+                            <label className="label">Suggested Price/Gallon</label>
                             <div className="control has-icons-left">
                             <input
                                 type="number"

@@ -25,7 +25,7 @@ class LogIn extends React.Component {
                 <h1 class="title has-text-centered">Log In</h1>
                 <div className="field">
                     <label className="label">Username</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         className="input"
@@ -38,7 +38,7 @@ class LogIn extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Password</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         className="input"

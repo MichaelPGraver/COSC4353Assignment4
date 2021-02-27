@@ -29,7 +29,7 @@ class SignUp extends React.Component {
                 <h1 class="title has-text-centered">Complete Registration</h1>
                 <div className="field">
                     <label className="label">Full Name</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         maxlength="50"
@@ -43,7 +43,7 @@ class SignUp extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Address 1</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         maxlength="100"
@@ -57,7 +57,7 @@ class SignUp extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Address 2</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         maxlength="100"
@@ -70,7 +70,7 @@ class SignUp extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">City</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         maxlength="90"
@@ -146,7 +146,7 @@ class SignUp extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Zipcode</label>
-                    <div className="control has-icons-left">
+                    <div className="control">
                     <input
                         type="text"
                         minlength="5"
