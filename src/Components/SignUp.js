@@ -40,7 +40,7 @@ class SignUp extends React.Component {
                     <label className="label">Password</label>
                     <div className="control">
                     <input
-                        type="text"
+                        type="password"
                         className="input"
                         name="travelers" 
                         required
