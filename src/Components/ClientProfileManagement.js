@@ -32,6 +32,7 @@ class SignUp extends React.Component {
                     <div className="control has-icons-left">
                     <input
                         type="text"
+                        maxlength="50"
                         className="input"
                         required
                     />
@@ -45,6 +46,7 @@ class SignUp extends React.Component {
                     <div className="control has-icons-left">
                     <input
                         type="text"
+                        maxlength="100"
                         className="input"
                         required
                     />
@@ -58,6 +60,7 @@ class SignUp extends React.Component {
                     <div className="control has-icons-left">
                     <input
                         type="text"
+                        maxlength="100"
                         className="input"
                     />
                     <span className="icon is-small is-left">
