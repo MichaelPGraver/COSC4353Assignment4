@@ -73,7 +73,7 @@ class SignUp extends React.Component {
                     <div className="control">
                     <input
                         type="text"
-                        maxlength="100"
+                        maxlength="90"
                         className="input"
                         required
                     />
@@ -148,7 +148,7 @@ class SignUp extends React.Component {
                     <label className="label">Zipcode</label>
                     <div className="control">
                     <input
-                        type="number"
+                        type="text"
                         minlength="5"
                         maxlength="9"
                         className="input"
