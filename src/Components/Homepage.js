@@ -24,7 +24,7 @@ class HomePage extends Component {
     }
 
     submitForm = () => {
-        this.setState({ page: "FuelForm"});
+        this.setState({ page: "FuelQuoteHistory"});
     };
 
 
