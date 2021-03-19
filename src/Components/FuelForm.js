@@ -24,6 +24,7 @@ class FuelForm extends React.Component {
       handleSubmit(e) {
         e.preventDefault();
         this.props.handleSubmit()
+        this.props.submitForm()
       }
     
 
@@ -40,7 +41,8 @@ class FuelForm extends React.Component {
                             <input
                                 type="number"
                                 className="input"
-                                name="travelers" 
+                                name="gallons" 
+                                onChange={this.handleChange}
                                 required
                             />
                             <span className="icon is-small is-left">
@@ -54,7 +56,8 @@ class FuelForm extends React.Component {
                             <input
                                 type="text"
                                 className="input"
-                                name="travelers" 
+                                name="address" 
+                                onChange={this.handleChange}
                                 disabled
                             />
                             <span className="icon is-small is-left">
@@ -68,7 +71,9 @@ class FuelForm extends React.Component {
                             <input
                                 type="date"
                                 className="input"
-                                //name="date" value={this.state.date} onChange={this.handleChange}
+                                name="date" 
+                                value={this.state.date} 
+                                onChange={this.handleChange}
                                 required
                             />
                             <span className="icon is-small is-left">
@@ -82,6 +87,7 @@ class FuelForm extends React.Component {
                             <input
                                 type="number"
                                 className="input"
+                                onChange={this.handleChange}
                                 disabled
                             />
                             <span className="icon is-small is-left">
@@ -95,7 +101,8 @@ class FuelForm extends React.Component {
                             <input
                                 type="number"
                                 className="input"
-                                name="travelers" 
+                                name="amount" 
+                                onChange={this.handleChange}
                                 disabled
                             />
                             <span className="icon is-small is-left">
