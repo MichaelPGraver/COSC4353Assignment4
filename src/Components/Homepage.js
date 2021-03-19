@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import "react-bulma-components/dist/react-bulma-components.min.css";
-import Navbar from '../Components/Navbar';
-import FuelForm from '../Components/FuelForm';
-import LogIn from '../Components/logIn';
-import WelcomePage from '../Components/WelcomePage';
-import SignUp from '../Components/SignUp';
-import FuelQuoteHistory from '../Components/FuelQuoteHistory';
-import ClientProfileManagement from '../Components/ClientProfileManagement';
+import Navbar from './Navbar';
+import FuelForm from './FuelForm';
+import LogIn from './logIn';
+import WelcomePage from './WelcomePage';
+import SignUp from './SignUp';
+import FuelQuoteHistory from './FuelQuoteHistory';
+import ClientProfileManagement from './ClientProfileManagement';
 
 
 class HomePage extends Component {
@@ -22,8 +22,6 @@ class HomePage extends Component {
     navHandler(tab) {
         this.setState({page: tab});
     }
-
-
 
     submitForm = () => {
         this.setState({ page: "FuelForm"});
