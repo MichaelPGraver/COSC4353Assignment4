@@ -1,7 +1,7 @@
 import React from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 
-class SignUp extends React.Component {
+class CompleteProfileManagement extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -13,11 +13,16 @@ class SignUp extends React.Component {
             Zipcode: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
+    handleChange(e) {
+        this.setState({[e.target.name]: e.target.value})
+    }
     handleSubmit(e) {
         e.preventDefault();
-        this.props.submitCompleteProfileManagement()
+        alert("Thank you for completing your profile.");
+        //this.props.submitCompleteProfileManagement();
     }
 
     render(){
@@ -32,8 +37,11 @@ class SignUp extends React.Component {
                     <div className="control">
                     <input
                         type="text"
+                        value={this.state.fullName}
                         maxlength="50"
                         className="input"
+                        name="fullName"
+                        onChange={this.handleChange}
                         required
                     />
                     <span className="icon is-small is-left">
@@ -46,8 +54,11 @@ class SignUp extends React.Component {
                     <div className="control">
                     <input
                         type="text"
+                        value={this.state.Address1}
                         maxlength="100"
                         className="input"
+                        name="Address1"
+                        onChange={this.handleChange}
                         required
                     />
                     <span className="icon is-small is-left">
@@ -60,8 +71,11 @@ class SignUp extends React.Component {
                     <div className="control">
                     <input
                         type="text"
+                        value={this.state.Address2}
                         maxlength="100"
                         className="input"
+                        name="Address2"
+                        onChange={this.handleChange}
                     />
                     <span className="icon is-small is-left">
                         <i className="fa fa-dollar"></i>
@@ -73,8 +87,11 @@ class SignUp extends React.Component {
                     <div className="control">
                     <input
                         type="text"
+                        value={this.state.City}
                         maxlength="90"
                         className="input"
+                        name="City"
+                        onChange={this.handleChange}
                         required
                     />
                     <span className="icon is-small is-left">
@@ -85,7 +102,11 @@ class SignUp extends React.Component {
                 <div className="field">
                             <label className="label">State</label>
                             <div className="select">
-                            <select name="State" value={this.state.State}>
+                            <select 
+                                name="State" 
+                                value={this.state.State}
+                                onChange={this.handleChange}
+                                >
                                 <option>AL</option>
                                 <option>AK</option>
                                 <option>AZ</option>
@@ -149,9 +170,12 @@ class SignUp extends React.Component {
                     <div className="control">
                     <input
                         type="text"
+                        value={this.state.Zipcode}
                         minlength="5"
                         maxlength="9"
                         className="input"
+                        name="Zipcode"
+                        onChange={this.handleChange}
                         required
                     />
                     <span className="icon is-small is-left">
@@ -175,4 +199,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+export default CompleteProfileManagement;
