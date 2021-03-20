@@ -9,8 +9,8 @@ class FuelForm extends React.Component {
             Gallons_requested: 0,
             Suggested_price: 50,
             Delivery_date: new Date(),
-            Total_amount_due: 0,
-            Delivery_address: ''
+            Total_amount_due: 100,
+            Delivery_address: '420 Izone Ln.'
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
