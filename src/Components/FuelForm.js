@@ -23,7 +23,6 @@ class FuelForm extends React.Component {
 
       handleSubmit(e) {
         e.preventDefault();
-        this.props.handleSubmit()
         this.props.submitForm()
       }
     
