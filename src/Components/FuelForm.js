@@ -7,7 +7,7 @@ class FuelForm extends React.Component {
         this.state = {
             current_user:[],
             Gallons_requested: 0,
-            Suggested_price: 50,
+            Suggested_price: 0,
             Delivery_date: new Date(),
             Total_amount_due: 100,
             Delivery_address: '420 Izone Ln.'
