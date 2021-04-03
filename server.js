@@ -8,6 +8,8 @@ let app = express();
 
 const {
     SignUp,
+    logIn,
+    ClientProfileManagement,
 } = require("./endpoints");
 
 app.use(
@@ -23,6 +25,8 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(form_parser.none());
 
 app.post("/api/SignUp", SignUp);
+app.post("/api/LogIn", logIn);
+app.post("/api/profileManagement", ClientProfileManagement)
 
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname,'build','index.html'));
