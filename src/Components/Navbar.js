@@ -22,7 +22,7 @@ class Navbar extends Component {
                   className="navbar-item navbar-item-hover"
                   onClick={this.click}
                 >
-                  Assignment 3
+                  Assignment 2
                 </div>
               </div>
     

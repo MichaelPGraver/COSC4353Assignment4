@@ -1,10 +1,11 @@
 import React from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 
-class CompleteProfileManagement extends React.Component {
+class SignUp extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            username: localStorage.getItem('username'),
             fullName: '',
             Address1: '',
             Address2: '',
@@ -21,8 +22,25 @@ class CompleteProfileManagement extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        alert("Thank you for completing your profile.");
-        //this.props.submitCompleteProfileManagement();
+        fetch("http://localhost:8080/api/profileManagement", {
+            method: "post",
+            headers: new Headers({
+                "content-type": "application/json",
+            }),
+            mode: "cors",
+            credentials: "include",
+            body: JSON.stringify(this.state),
+        }).then((res) => {
+            res.json().then((result) => {
+                if (result.success) {
+                    localStorage.setItem('address', result.data)
+                    this.props.submitClientProfileManagement();
+                    alert("Profile updated");
+                } else {
+                    alert("Unable to update profile");
+                }
+            });
+        });
     }
 
     render(){
@@ -34,14 +52,13 @@ class CompleteProfileManagement extends React.Component {
                 <h1 class="title has-text-centered">Complete Registration</h1>
                 <div className="field">
                     <label className="label">Full Name</label>
-                    <div className="control">
+                    <div className="control has-icons-left">
                     <input
                         type="text"
                         value={this.state.fullName}
-                        maxlength="50"
-                        className="input"
-                        name="fullName"
+                        name = "fullName"
                         onChange={this.handleChange}
+                        className="input"
                         required
                     />
                     <span className="icon is-small is-left">
@@ -51,14 +68,13 @@ class CompleteProfileManagement extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Address 1</label>
-                    <div className="control">
+                    <div className="control has-icons-left">
                     <input
                         type="text"
                         value={this.state.Address1}
-                        maxlength="100"
-                        className="input"
-                        name="Address1"
+                        name = "Address1"
                         onChange={this.handleChange}
+                        className="input"
                         required
                     />
                     <span className="icon is-small is-left">
@@ -68,14 +84,13 @@ class CompleteProfileManagement extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Address 2</label>
-                    <div className="control">
+                    <div className="control has-icons-left">
                     <input
                         type="text"
                         value={this.state.Address2}
-                        maxlength="100"
-                        className="input"
-                        name="Address2"
+                        name = "Address2"
                         onChange={this.handleChange}
+                        className="input"
                     />
                     <span className="icon is-small is-left">
                         <i className="fa fa-dollar"></i>
@@ -84,14 +99,13 @@ class CompleteProfileManagement extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">City</label>
-                    <div className="control">
+                    <div className="control has-icons-left">
                     <input
                         type="text"
                         value={this.state.City}
-                        maxlength="90"
-                        className="input"
-                        name="City"
+                        name = "City"
                         onChange={this.handleChange}
+                        className="input"
                         required
                     />
                     <span className="icon is-small is-left">
@@ -102,16 +116,8 @@ class CompleteProfileManagement extends React.Component {
                 <div className="field">
                             <label className="label">State</label>
                             <div className="select">
-                            <select 
-                                name="State" 
-                                value={this.state.State}
-                                onChange={this.handleChange}
-                                >
-                                <option>AL</option>
-                                <option>AK</option>
-                                <option>AZ</option>
-                                <option>AR</option>
-                                <option>CA</option>
+                            <select name="State" value={this.state.State} onChange={this.handleChange}>
+                                <option>Select</option>
                                 <option>AL</option>
                                 <option>AK</option>
                                 <option>AZ</option>
@@ -149,8 +155,8 @@ class CompleteProfileManagement extends React.Component {
                                 <option>OH</option>
                                 <option>OK</option>
                                 <option>OR</option>
-                                <option>PA</option>
                                 <option>RI</option>
+                                <option>RO</option>
                                 <option>SC</option>
                                 <option>SD</option>
                                 <option>TN</option>
@@ -167,15 +173,13 @@ class CompleteProfileManagement extends React.Component {
                 </div>
                 <div className="field">
                     <label className="label">Zipcode</label>
-                    <div className="control">
+                    <div className="control has-icons-left">
                     <input
-                        type="text"
+                        type="number"
                         value={this.state.Zipcode}
-                        minlength="5"
-                        maxlength="9"
-                        className="input"
-                        name="Zipcode"
+                        name = "Zipcode"
                         onChange={this.handleChange}
+                        className="input"
                         required
                     />
                     <span className="icon is-small is-left">
@@ -199,4 +203,4 @@ class CompleteProfileManagement extends React.Component {
     }
 }
 
-export default CompleteProfileManagement;
+export default SignUp;

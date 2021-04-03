@@ -5,12 +5,12 @@ class FuelForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current_user:[],
+            username: localStorage.getItem('username'),
             Gallons_requested: 0,
             Suggested_price: 0,
             Delivery_date: new Date(),
-            Total_amount_due: 100,
-            Delivery_address: '420 Izone Ln.'
+            Total_amount_due: 0,
+            Delivery_address: localStorage.getItem("address")
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -23,8 +23,7 @@ class FuelForm extends React.Component {
 
       handleSubmit(e) {
         e.preventDefault();
-        alert("Suggested Price: " + this.state.Suggested_price + "\nTotal Amount Due: " + this.state.Total_amount_due);
-        this.props.submitForm()
+        this.props.handleSubmit()
       }
     
 
@@ -37,12 +36,13 @@ class FuelForm extends React.Component {
                         <h1 class="title has-text-centered">Fuel Quote Form</h1>
                         <div className="field">
                             <label className="label">Gallons Requested</label>
-                            <div className="control">
+                            <div className="control has-icons-left">
                             <input
                                 type="number"
                                 className="input"
-                                name="gallons" 
-                                onChange={this.handleChange}
+                                value = {this.state.Gallons_requested}
+                                onChange = {this.handleChange}
+                                name="Gallons_requested" 
                                 required
                             />
                             <span className="icon is-small is-left">
@@ -51,12 +51,13 @@ class FuelForm extends React.Component {
                             </div>
                         </div>
                         <div className="field">
-                            <label className="label">Delivery Address </label>
+                            <label className="label">Delivery Address</label>
                             <div className="control has-icons-left">
                             <input
-                                placeholder={this.state.Delivery_address}
+                                type="text"
                                 className="input"
-                                name="address" 
+                                value = {this.state.Delivery_address}
+                                name="Delivery_address" 
                                 disabled
                             />
                             <span className="icon is-small is-left">
@@ -70,7 +71,8 @@ class FuelForm extends React.Component {
                             <input
                                 type="date"
                                 className="input"
-                                name="date"  
+                                name="Delivery_date" 
+                                value={this.state.Delivery_date} 
                                 onChange={this.handleChange}
                                 required
                             />
@@ -79,15 +81,14 @@ class FuelForm extends React.Component {
                             </span>
                             </div>
                         </div>
-                        {/*
                         <div className="field">
-                            <label className="label">Suggested Price/Gallon</label>
+                            <label className="label">Suggessted Price/Gallon</label>
                             <div className="control has-icons-left">
                             <input
-                                
-                                placeholder={this.state.Suggested_price}
+                                type="number"
                                 className="input"
-                                onChange={this.handleChange}
+                                value = {this.state.Suggested_price}
+                                name="Suggested_price"
                                 disabled
                             />
                             <span className="icon is-small is-left">
@@ -99,10 +100,10 @@ class FuelForm extends React.Component {
                             <label className="label">Amount Due</label>
                             <div className="control has-icons-left">
                             <input
-                                placeholder={this.state.Total_amount_due}
+                                type="number"
                                 className="input"
-                                name="amount" 
-                                onChange={this.handleChange}
+                                value = {this.state.Total_amount_due}
+                                name="Total_amount_due" 
                                 disabled
                             />
                             <span className="icon is-small is-left">
@@ -110,7 +111,6 @@ class FuelForm extends React.Component {
                             </span>
                             </div>
                         </div>
-                        */} <br></br>
                         <div className="field has-text-centered">
                             <input
                             type="submit"

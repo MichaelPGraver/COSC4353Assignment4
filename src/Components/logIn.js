@@ -19,15 +19,9 @@ class LogIn extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        
-        if (this.state.username != "cosc4353" || this.state.password != "password123"){
-            alert("Wrong username or password!")
-        }
-        else {
-            alert("Successful log in!");
-            this.props.submitLogIn();
-        }
-        /*
+
+        localStorage.setItem('username', this.state.username)
+
         let xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/api/logIn");
         xhttp.setRequestHeader("Content-Type", "application/json");
@@ -41,14 +35,22 @@ class LogIn extends React.Component {
         xhttp.onreadystatechange = (e) => {
             if (xhttp.readyState == XMLHttpRequest.DONE) {
                 let body = JSON.parse(xhttp.response);
-                if (body.success) {
-                    this.props.logIn();
+                if (body.success && body.firstlog == "0") {  //not first login
+                    alert("Successful login!")
+                    localStorage.setItem('address', body.address)
+                    console.log(body)
+                    this.props.submitLogIn();
+                } 
+                else if(body.success && body.firstlog == "1"){ //first login
+                    alert("Welcome! Please complete your profile.")
+                    console.log(body)
+                    this.props.submitFirstLogIn();
                 } else {
                     console.log("wrong password!");
                 }
             }
         };
-        */
+        
     }
 
     render(){
@@ -105,5 +107,4 @@ class LogIn extends React.Component {
         );
     }
 }
-
 export default LogIn;

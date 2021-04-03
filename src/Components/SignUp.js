@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "react-bulma-components/dist/react-bulma-components.min.css";
-import axios from "axios";
 
 class SignUp extends React.Component {
     constructor(props){
@@ -18,8 +17,7 @@ class SignUp extends React.Component {
     }
     handleSubmit = async e => {
         e.preventDefault();
-        this.props.submitSignUp();
-        /*
+        
         fetch("http://localhost:8080/api/SignUp", {
             method: "post",
             headers: new Headers({
@@ -37,7 +35,7 @@ class SignUp extends React.Component {
                     alert("Username exists");
                 }
             });
-        });*/
+        });
     }
 
     render(){

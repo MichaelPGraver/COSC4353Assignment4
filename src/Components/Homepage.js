@@ -24,7 +24,7 @@ class HomePage extends Component {
     }
 
     submitForm = () => {
-        this.setState({ page: "FuelQuoteHistory"});
+        this.setState({ page: "FuelForm"});
     };
 
 
@@ -34,6 +34,10 @@ class HomePage extends Component {
 
     submitLogIn = () => {
         this.setState({ page: "FuelForm"});
+    };
+
+    submitFirstLogIn = () => {
+        this.setState({ page: "ClientProfileManagement"})
     };
 
     submitSignUp = () => {
@@ -67,7 +71,7 @@ class HomePage extends Component {
                 return <FuelForm submitForm={this.submitForm} />;
                 
             case "LogIn":
-                return <LogIn submitLogIn={this.submitLogIn}/>;
+                return <LogIn submitLogIn={this.submitLogIn} submitFirstLogIn={this.submitFirstLogIn} setUsername={this.setUsername}/>;
 
             default:
                 return <div></div>;
