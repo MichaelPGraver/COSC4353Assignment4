@@ -16,7 +16,7 @@ const endpoint = async function (request, response){
                 return response.send(
                     JSON.stringify({
                         success: false,
-                        data: "Username exists",
+                        data: "Username exists!",
                     })
                 );
             /*
@@ -27,7 +27,15 @@ const endpoint = async function (request, response){
             })
             */
             connection.query(
-                `INSERT INTO user (username, password) VALUES ('${username}', '${password}')`,
+                `INSERT INTO clientinformation (username, fullname, address1, city, state, zipcode) VALUES ('${username}', '0', '0', '0', '0', '0')`,
+                (err, res, fields) => {
+                    if (err) {
+                        return response.send(err);
+                    }
+                }
+            );
+            connection.query(
+                `INSERT INTO user (username, password, firstlog) VALUES ('${username}', '${password}', '0')`,
                 (err, res, fields) => {
                     if (err) {
                         return response.send(err);
