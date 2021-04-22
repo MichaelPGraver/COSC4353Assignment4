@@ -10,6 +10,8 @@ const {
     SignUp,
     logIn,
     ClientProfileManagement,
+    priceMargin,
+    fuelquote,
 } = require("./endpoints");
 
 app.use(
@@ -26,7 +28,9 @@ app.use(form_parser.none());
 
 app.post("/api/SignUp", SignUp);
 app.post("/api/LogIn", logIn);
-app.post("/api/profileManagement", ClientProfileManagement)
+app.post("/api/profileManagement", ClientProfileManagement);
+app.post("/api/priceMargin", priceMargin);
+app.post("api/fuelquote", fuelquote);
 
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname,'build','index.html'));
