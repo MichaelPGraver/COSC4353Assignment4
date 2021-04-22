@@ -58,6 +58,7 @@ class SignUp extends React.Component {
                         value={this.state.fullName}
                         name = "fullName"
                         onChange={this.handleChange}
+                        maxlength="50"
                         className="input"
                         required
                     />
@@ -73,6 +74,7 @@ class SignUp extends React.Component {
                         type="text"
                         value={this.state.Address1}
                         name = "Address1"
+                        maxlength="100"
                         onChange={this.handleChange}
                         className="input"
                         required
@@ -89,6 +91,7 @@ class SignUp extends React.Component {
                         type="text"
                         value={this.state.Address2}
                         name = "Address2"
+                        maxlength="100"
                         onChange={this.handleChange}
                         className="input"
                     />
@@ -104,6 +107,7 @@ class SignUp extends React.Component {
                         type="text"
                         value={this.state.City}
                         name = "City"
+                        maxlength="90"
                         onChange={this.handleChange}
                         className="input"
                         required
@@ -178,6 +182,8 @@ class SignUp extends React.Component {
                         type="number"
                         value={this.state.Zipcode}
                         name = "Zipcode"
+                        minlength="5"
+                        maxlength="9"
                         onChange={this.handleChange}
                         className="input"
                         required
