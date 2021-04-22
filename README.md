@@ -2,7 +2,7 @@ database instructions:
 
 1. run the sql code to create the database with mysql
 2. With the current code, the host is localhost, user is "root", password is "password", database name is "appdb", and port is 3306. If unable to create it under these conditions, feel free to change the database.js file with the code that creates the connection.
-3. 
+
 Instructions to run :
 
 1. open terminal
