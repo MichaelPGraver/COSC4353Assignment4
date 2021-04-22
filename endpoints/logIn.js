@@ -1,5 +1,4 @@
 let connection = require("../database");
-const passAlgo = require("password-hash")
 
 const endpoint = function (request, response) {
     
@@ -17,7 +16,6 @@ const endpoint = function (request, response) {
                         data: "successful login!",
                     })
                 );}
-            //let verify = passAlgo.verify(password, res[0].newPassword);
             if (res[0].password == password && res[0].firstlog == "0") {//first login
                 connection.query(
                     `UPDATE user 
@@ -58,14 +56,6 @@ const endpoint = function (request, response) {
                         }
                     }
                 )
-                /*response.contentType("application/json");
-                return response.send(
-                    JSON.stringify({
-                        success: true,
-                        data: "Login successful!",
-                        firstlog: "0",
-                    })
-                );*/
             } else {
                 console.log(password)
                 response.contentType("application/json");
