@@ -11,12 +11,11 @@ class FuelForm extends React.Component {
             Delivery_date: new Date(),
             Total_amount_due: 0,
             Delivery_address: localStorage.getItem("address"),
+            margin: 0,
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.calculatePrice = this.calculatePrice.bind(this);
-        this.calculateTAD = this.calculateTAD.bind(this);
-        //this.backButton = this.backButton.bind(this);
     }
 
       handleChange(e) {
@@ -25,46 +24,56 @@ class FuelForm extends React.Component {
 
       handleSubmit(e) {
         e.preventDefault();
-        this.props.submitForm()
-      }
-      
-      
-      calculatePrice() {
-        const ppg = 1.50;
-        //location factor
-        let lfactor = 0.00;
-        if (this.state.City == "TX"){
-            lfactor = 0.02;
-        }
-        if (this.state.City != "TX") {
-            lfactor = 0.04;
-        }
-
-        //gallons requested factor
-        const gallonsrequested = this.state.Gallons_requested;
-        let grfactor = 0.00;
-        if (gallonsrequested >= 1000) {
-            grfactor = 0.02;
-        }
-        if (gallonsrequested < 1000) {
-            grfactor = 0.03;
-        }
-
-        //company profit factor
-        const cpfactor = 0.10;
-
-        //calculate margin and suggested price
-        let margin = ppg * ( lfactor + gallonsrequested + cpfactor);
-        let suggestedprice = ppg + margin;
-
-        return suggestedprice;
+        fetch("http://localhost:8080/api/fuelquote", {
+            method: "post",
+            headers: new Headers({
+                "content-type": "application/json",
+            }),
+            mode: "cors",
+            credentials: "include",
+            body: JSON.stringify(this.state),
+        }).then((res)=> {
+            res.json().then((result) => {
+                this.props.submitForm();
+            });
+        });
       }
 
-      calculateTAD() {
-          const gallonsrequested = this.state.Gallons_requested;
-          const totalprice = gallonsrequested * this.calculatePrice();
-          return totalprice;
+      calculatePrice(e){
+          e.preventDefault();
+
+          if (this.state.Delivery_date != undefined && this.state.Gallons_requested >= 1){
+              this.setState({ disabled: !this.state.disabled });
+              alert("Calculating price");
+              if (this.state.Gallons_requested > 1000){
+                  let calcMargin = (this.state.margin + .02 + .1) * 1.5 + 1.5;
+                  this.setState({ margin: calcMargin });
+                  let totalAmount = calcMargin * this.state.Gallons_requested;
+                  this.setState({ Total_amount_due: totalAmount });
+              }
+              else {
+                  let calcMargin = (this.state.margin + .02 + .1) * 1.5 + 1.5;
+                  this.setState({ margin: calcMargin });
+                  let totalAmount = calcMargin * this.state.Gallons_requested;
+                  this.setState({ Total_amount_due: totalAmount });
+              }
+          } else {
+              alert("Invalid delivery date or gallons requested");
+          }
       }
+
+      componentDidMount() {
+          fetch("http://localhost:8080/api/priceMargin", {
+              method: "get",
+              credentials: "include",
+              mode: "cors",
+          }).then((res) => res.json()).then((margin) =>
+          this.setState({ margin }, () => 
+          console.log("Margin fetched...", margin)
+          )
+        );
+      }
+    
 
       render() {
         return (
@@ -121,14 +130,15 @@ class FuelForm extends React.Component {
                             </div>
                         </div>
                         <div className="field">
-                            <label className="label">Suggested Price/Gallon</label>
+                            <label className="label">Suggessted Price/Gallon</label>
                             <div className="control has-icons-left">
                             <input
                                 type="number"
                                 className="input"
-                                value = {this.calculatePrice()}
+                                value = {this.state.margin}
                                 name="Suggested_price"
                                 disabled
+                                onChange={this.handleChange}
                             />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-dollar"></i>
@@ -141,9 +151,10 @@ class FuelForm extends React.Component {
                             <input
                                 type="number"
                                 className="input"
-                                value = {this.calculateTAD()}
+                                value = {this.state.Total_amount_due}
                                 name="Total_amount_due" 
                                 disabled
+                                onChange={this.handleChange}
                             />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-dollar"></i>
@@ -151,17 +162,12 @@ class FuelForm extends React.Component {
                             </div>
                         </div>
                         <div className="field has-text-centered">
-                           <input
-                            type="submit"
-                            value="Get Quote"
-                            disabled={!this.state.Gallons_requested}
-                            />
-                        </div>
-                        <div className="field has-text-centered">
                             <input
                             type="submit"
                             className="button is-link"
                             value="Submit"
+                            onClick={this.calculatePrice}
+                            disabled={this.state.disabled}
                             />
                         </div>
                         </form>
@@ -171,6 +177,5 @@ class FuelForm extends React.Component {
        );
     }
 }
-
 
 export default FuelForm;
